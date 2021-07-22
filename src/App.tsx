@@ -4,6 +4,8 @@ import { GlobalStyle } from './styles/styles'
 
 import { Home } from './pages/Home'
 import { Characters } from './pages/Characters'
+import { CharacterSingle } from './pages/CharacterSingle'
+
 import { Header } from './components/Header'
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/characters" component={Characters} />
+          <Route path="/characters/:id" component={CharacterSingle} />
         </Switch>
       </BrowserRouter>
     </div>
