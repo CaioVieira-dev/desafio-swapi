@@ -1,5 +1,5 @@
 import { Container } from './styles'
-import { Header } from '../../components/Header'
+
 
 import { useEffect, useState } from 'react'
 import { Card } from '../../components/Card'
@@ -33,7 +33,6 @@ export function Characters() {
 
     return (
         <>
-            <Header />
             <Container>
                 {characterList ?
                     characterList.map((character: any) =>

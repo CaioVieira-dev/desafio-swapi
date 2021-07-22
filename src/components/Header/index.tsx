@@ -1,11 +1,12 @@
 import { Logo, Navigation, NavigationItem, Container } from './styles'
+import { Link } from 'react-router-dom'
 
 import SWlogo from '../../assets/star-wars-logo.svg'
 export function Header() {
 
     return (
         <Container>
-            <Logo src={SWlogo} />
+            <Link to="/" ><Logo src={SWlogo} /></Link>
             <Navigation>
                 <NavigationItem to='/characters'>pessoas</NavigationItem>
                 <NavigationItem to='/'>planetas</NavigationItem>
