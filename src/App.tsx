@@ -17,7 +17,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/characters" component={Characters} />
-          <Route path="/characters/:id" component={CharacterSingle} />
+          <Route path="/characters/:name" component={CharacterSingle} />
         </Switch>
       </BrowserRouter>
     </div>
