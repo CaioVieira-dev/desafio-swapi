@@ -1,20 +1,26 @@
 import { Container, Field, Info, Line } from './styles'
 
-export function Card() {
+type CardProps = {
+    name: string;
+    planet: string;
+    birth: string;
+}
+
+export function Card(props: CardProps) {
 
     return (
         <Container>
             <Line>
                 <Field>Nome: </Field>
-                <Info> Luke Skywalker</Info>
+                <Info> {props.name}</Info>
             </Line>
             <Line>
                 <Field>Planeta: </Field>
-                <Info> Tatooine</Info>
+                <Info> {props.planet}</Info>
             </Line>
             <Line>
                 <Field>Nascimento: </Field>
-                <Info> 19BBY</Info>
+                <Info> {props.birth}</Info>
             </Line>
         </Container>
     )

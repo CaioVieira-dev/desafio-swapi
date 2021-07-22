@@ -8,6 +8,7 @@ border-radius: 8px;
 display: flex;
 flex-direction:column;
 gap: 28px;
+width: 400px;
 `
 export const Line = styled.p``
 export const Field = styled.strong`
