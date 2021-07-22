@@ -1,11 +1,12 @@
-import { Logo } from './styles'
-
-import SWlogo from '../../assets/star-wars-logo.svg'
-
+import { Image } from './styles'
+import { Header } from '../../components/Header'
+import banner from '../../assets/sw-banner.png'
 export function Home() {
 
     return (
-        <Logo src={SWlogo} />
-
+        <>
+            <Header />
+            <Image src={banner} />
+        </>
     )
 }
