@@ -7,7 +7,7 @@ export function Header() {
         <Container>
             <Logo src={SWlogo} />
             <Navigation>
-                <NavigationItem to='/'>pessoas</NavigationItem>
+                <NavigationItem to='/characters'>pessoas</NavigationItem>
                 <NavigationItem to='/'>planetas</NavigationItem>
                 <NavigationItem to='/'>naves</NavigationItem>
                 <NavigationItem to='/'>veículos</NavigationItem>
