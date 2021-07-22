@@ -9,6 +9,7 @@ display:flex;
 align-items: center;
 justify-content: space-between;
 padding: 0 24px;
+background-color: hsla(0,0%,0%,0.2);
 `
 
 export const Logo = styled.img``
