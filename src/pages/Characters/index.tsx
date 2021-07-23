@@ -39,7 +39,10 @@ export function Characters() {
                         <Card key={character.id}
                             birth={character.birth}
                             name={character.name}
-                            planet={character.planet} />)
+                            planet={character.planet}
+                            photo={character.id}
+                            cardType="character"
+                        />)
                     :
                     "carregando"}
             </Container>
