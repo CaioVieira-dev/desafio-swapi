@@ -3,6 +3,8 @@ import { Container } from './styles'
 
 import { useEffect, useState } from 'react'
 import { Card } from '../../components/Card'
+import { Loading } from '../../components/Load'
+
 import { People, Planets } from 'swapi-ts'
 
 type CharacterType = {
@@ -53,7 +55,7 @@ export function Characters() {
                             redirectTo={`/characters/${character.name}`}
                         />)
                     :
-                    "carregando"}
+                    <Loading />}
             </Container>
         </>
     )

@@ -11,6 +11,7 @@ import {
     Vehicles,
     Planets, ISpecie, IStarship, IFilm, IVehicle, IPlanet
 } from 'swapi-ts'
+import { Loading } from '../../components/Load';
 
 type CharacterDataType = {
     name: string;
@@ -141,7 +142,7 @@ export function CharacterSingle() {
     console.log(characterData)
     return (
         <Container>
-            {characterData && <>
+            {characterData ? <>
                 <Photo src={photo || error} />
                 <Text>
                     <Line>
@@ -186,7 +187,7 @@ export function CharacterSingle() {
                     </Line>
                 </Text>
 
-            </>}
+            </> : <Loading />}
 
         </Container>
     )
