@@ -27,7 +27,7 @@ export function Header() {
             <MobileBarsButton onClick={toggle} src={bars} />
             <Navigation onClick={toggle} className={isOpen ? "active" : ""}>
                 <NavigationItem to='/characters'>pessoas</NavigationItem>
-                <NavigationItem to='/'>planetas</NavigationItem>
+                <NavigationItem to='/planets'>planetas</NavigationItem>
                 <NavigationItem to='/'>naves</NavigationItem>
                 <NavigationItem to='/'>veículos</NavigationItem>
                 <NavigationItem to='/'>filmes</NavigationItem>
