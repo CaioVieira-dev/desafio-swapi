@@ -10,6 +10,9 @@ width: 426px;
 display: flex;
 gap: 20px;
 align-items: center;
+@media (max-width:1440px){
+    width:400px;
+}
 `
 export const Text = styled.div`
 display: flex;
