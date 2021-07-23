@@ -1,6 +1,6 @@
 import error from '../../assets/erro.jpg'
 import { Container, Field, Info, Line, Photo, Text } from './styles'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 
 import {
@@ -27,6 +27,7 @@ type CharacterDataType = {
 
 export function CharacterSingle() {
     const params = useParams<{ name: string }>();
+    const history = useHistory()
 
     const [characterData, setCharacterData] = useState<CharacterDataType>()
     const [photo, setPhoto] = useState()
@@ -82,9 +83,9 @@ export function CharacterSingle() {
             const character = await findCharacter(params.name);
             console.log(character)
             if (character.length !== 1) {
-                //erro de busca, numero de personagens invalido
-                //TODO criar 404
-                console.error("Invalid search parameter")
+                //search failed, search should get only one character
+                console.error("Invalid search parameter: search should get only one character")
+                history.push('/404');
                 return;
             }
             char.name = character[0].name;
