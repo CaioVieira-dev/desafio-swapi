@@ -5,9 +5,15 @@ import { useEffect, useState } from 'react'
 import { Card } from '../../components/Card'
 import { People, Planets } from 'swapi-ts'
 
+type CharacterType = {
+    name: string;
+    planet: string;
+    birth: string;
+    id: string;
+}
 
 export function Characters() {
-    const [characterList, setCharacterList] = useState<any>()
+    const [characterList, setCharacterList] = useState<CharacterType[]>()
 
     useEffect(() => {
         async function apiCall() {
@@ -20,7 +26,7 @@ export function Characters() {
                 const planetName = planets.resources.find(planet => planet.value.url === character.value.homeworld)
                 return {
                     name: character.value.name,
-                    planet: planetName?.value.name,
+                    planet: planetName?.value.name || "none",
                     birth: character.value.birth_year,
                     id: character.value.url
                 }
@@ -36,7 +42,7 @@ export function Characters() {
         <>
             <Container>
                 {characterList ?
-                    characterList.map((character: any) =>
+                    characterList.map((character) =>
                         <Card key={character.id}
                             birth={character.birth}
                             name={character.name}
