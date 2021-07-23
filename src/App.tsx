@@ -8,6 +8,7 @@ import { CharacterSingle } from './pages/CharacterSingle'
 import { Planets } from './pages/Planets'
 import { PlanetSingle } from './pages/PlanetSingle'
 import { Starships } from './pages/Starships'
+import { StarshipSingle } from './pages/StarshipSingle'
 import { NotFound } from './pages/404'
 
 import { Header } from './components/Header'
@@ -25,6 +26,7 @@ function App() {
           <Route exact path="/planets" component={Planets} />
           <Route path="/planets/:name" component={PlanetSingle} />
           <Route exact path="/starships" component={Starships} />
+          <Route path="/starships/:name" component={StarshipSingle} />
           <Route exact path="/404" component={NotFound} />
         </Switch>
       </BrowserRouter>

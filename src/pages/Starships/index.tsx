@@ -51,6 +51,8 @@ export function Starships() {
                         info3={`${ship.speed} MGLT`}
                         photo={ship.id}
                         cardType="starship"
+                        clickable
+                        redirectTo={`/starships/${ship.name}`}
                     />) :
                 <Loading />}
 
