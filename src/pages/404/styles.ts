@@ -11,6 +11,7 @@ flex-direction: column;
 gap:24px;
 justify-content: center;
 align-items: center;
+padding: 0 2%;
 `
 
 export const Text = styled.strong`
@@ -18,4 +19,8 @@ export const Text = styled.strong`
 font-size: 64px;
 color: hsl(45,89%,45%);
 text-transform: capitalize;
+text-align: center;
+@media(max-width:768px){
+font-size: 48px;
+}
 `
