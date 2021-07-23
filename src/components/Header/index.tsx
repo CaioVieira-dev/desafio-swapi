@@ -29,7 +29,7 @@ export function Header() {
                 <NavigationItem to='/characters'>pessoas</NavigationItem>
                 <NavigationItem to='/planets'>planetas</NavigationItem>
                 <NavigationItem to='/starships'>naves</NavigationItem>
-                <NavigationItem to='/'>veículos</NavigationItem>
+                <NavigationItem to='/vehicles'>veículos</NavigationItem>
                 <NavigationItem to='/'>filmes</NavigationItem>
                 <NavigationItem to='/'>espécies</NavigationItem>
             </Navigation>
