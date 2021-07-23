@@ -28,7 +28,7 @@ export function Header() {
             <Navigation onClick={toggle} className={isOpen ? "active" : ""}>
                 <NavigationItem to='/characters'>pessoas</NavigationItem>
                 <NavigationItem to='/planets'>planetas</NavigationItem>
-                <NavigationItem to='/'>naves</NavigationItem>
+                <NavigationItem to='/starships'>naves</NavigationItem>
                 <NavigationItem to='/'>veículos</NavigationItem>
                 <NavigationItem to='/'>filmes</NavigationItem>
                 <NavigationItem to='/'>espécies</NavigationItem>
