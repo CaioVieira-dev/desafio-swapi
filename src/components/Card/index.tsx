@@ -4,9 +4,12 @@ import { useHistory } from 'react-router-dom'
 import { Container, Field, Info, Line, Photo, Text } from './styles'
 
 type CardProps = {
-    name: string;
-    planet: string;
-    birth: string;
+    info1: string;
+    info2: string;
+    info3: string;
+    field1: string;
+    field2: string;
+    field3: string;
     photo: string;
     cardType: "character" | "film" | "planet" | "specie" | "starship" | "vehicle";
     clickable?: boolean;
@@ -44,16 +47,16 @@ export function Card(props: CardProps) {
             <Photo src={photoSrc || error} />
             <Text>
                 <Line>
-                    <Field>Nome: </Field>
-                    <Info> {props.name}</Info>
+                    <Field>{props.field1} </Field>
+                    <Info> {props.info1}</Info>
                 </Line>
                 <Line>
-                    <Field>Planeta: </Field>
-                    <Info> {props.planet}</Info>
+                    <Field>{props.field2} </Field>
+                    <Info> {props.info2}</Info>
                 </Line>
                 <Line>
-                    <Field>Nascimento: </Field>
-                    <Info> {props.birth}</Info>
+                    <Field>{props.field3} </Field>
+                    <Info> {props.info3}</Info>
                 </Line>
             </Text>
         </Container>

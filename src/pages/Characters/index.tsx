@@ -46,9 +46,12 @@ export function Characters() {
                 {characterList ?
                     characterList.map((character) =>
                         <Card key={character.id}
-                            birth={character.birth}
-                            name={character.name}
-                            planet={character.planet}
+                            field1="Nome:"
+                            info1={character.name}
+                            field2="Planeta:"
+                            info2={character.planet}
+                            field3="Nascimento:"
+                            info3={character.birth}
                             photo={character.id}
                             cardType="character"
                             clickable
