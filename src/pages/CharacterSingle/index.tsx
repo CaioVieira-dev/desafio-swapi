@@ -36,11 +36,7 @@ export function CharacterSingle() {
         return (await People.findBySearch([name])).resources.map(entry => entry.value)
     }
     async function findSpecieName(specieUrl: string | ISpecie) {
-        return (await Species.find(specie => specie.url === specieUrl)).resources.map(entry => {
-            if (entry.value.url === specieUrl) {
-                return entry.value.name
-            }
-        });
+        return (await Species.find(specie => specie.url === specieUrl)).resources.find(entry => entry.value.url === specieUrl);
     }
     async function findStarshipsNames(starshipsUrlArray: string[] | IStarship[]) {
         return (await Starships.find(ship => {
@@ -96,7 +92,11 @@ export function CharacterSingle() {
 
             if (character[0].species.length >= 1) {
                 const species = await findSpecieName(character[0].species[0])
-                char.species = species.join(', ')
+                if (species) {
+                    char.species = species.value.name
+                } else {
+                    char.species = "indefinido"
+                }
             } else {
                 char.species = "desconhecido"
             }
@@ -137,7 +137,7 @@ export function CharacterSingle() {
                 })
         }
         apiCall()
-    }, [params.name])
+    }, [params.name, history])
     console.log(characterData)
     return (
         <Container>

@@ -27,7 +27,7 @@ export function Card(props: CardProps) {
                 setPhotoSrc(res.default)
             })
 
-    }, [])
+    }, [props.cardType, props.photo])
 
 
     return (
