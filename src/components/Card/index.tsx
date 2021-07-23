@@ -28,10 +28,18 @@ export function Card(props: CardProps) {
 
         //import after page load, only one photo
         import(`../../assets/${props.cardType}s/${photoId}.jpg`)
-            .catch(() => {
+            .catch((e) => {
+                //prevent break when cardtype or photoid is wrong
+                console.error(e)
             }).then((res) => {
-                //set photoSrc
-                setPhotoSrc(res.default)
+                console.log(res)
+                if (res.default) {
+                    //set photoSrc
+                    setPhotoSrc(res.default)
+                }
+            }).catch((er) => {
+                //prevent break when there is no default return from import
+                console.log(er)
             })
 
     }, [props.cardType, props.photo])
