@@ -10,10 +10,11 @@ export function Characters() {
 
     useEffect(() => {
         async function apiCall() {
+            //get all people
             const people = await People.find();
-
+            //get all planets
             const planets = await Planets.find();
-
+            //create card info
             const cardInfo = people.resources.map(character => {
                 const planetName = planets.resources.find(planet => planet.value.url === character.value.homeworld)
                 return {
@@ -23,8 +24,7 @@ export function Characters() {
                     id: character.value.url
                 }
             })
-
-
+            //set characterList with cardInfo
             setCharacterList(cardInfo)
 
         }
