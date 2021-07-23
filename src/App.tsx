@@ -12,6 +12,7 @@ import { StarshipSingle } from './pages/StarshipSingle'
 import { Vehicles } from './pages/Vehicles'
 import { VehicleSingle } from './pages/VehicleSingle'
 import { Films } from './pages/Films'
+import { FilmSingle } from './pages/FilmSingle'
 import { NotFound } from './pages/404'
 
 import { Header } from './components/Header'
@@ -33,6 +34,7 @@ function App() {
           <Route exact path="/vehicles" component={Vehicles} />
           <Route path="/vehicles/:name" component={VehicleSingle} />
           <Route exact path="/films" component={Films} />
+          <Route path="/films/:name" component={FilmSingle} />
           <Route exact path="/404" component={NotFound} />
         </Switch>
       </BrowserRouter>
