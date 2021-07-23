@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { Card } from '../../components/Card'
 import { People, Planets } from 'swapi-ts'
 
+
 export function Characters() {
     const [characterList, setCharacterList] = useState<any>()
 
@@ -42,6 +43,8 @@ export function Characters() {
                             planet={character.planet}
                             photo={character.id}
                             cardType="character"
+                            clickable
+                            redirectTo={`/characters/${character.name}`}
                         />)
                     :
                     "carregando"}

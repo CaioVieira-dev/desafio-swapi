@@ -1,5 +1,6 @@
 import error from '../../assets/erro.jpg'
 import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Container, Field, Info, Line, Photo, Text } from './styles'
 
 type CardProps = {
@@ -7,11 +8,14 @@ type CardProps = {
     planet: string;
     birth: string;
     photo: string;
-    cardType: "character" | "film" | "planet" | "specie" | "starship" | "vehicle"
+    cardType: "character" | "film" | "planet" | "specie" | "starship" | "vehicle";
+    clickable?: boolean;
+    redirectTo?: string;
 }
 
 export function Card(props: CardProps) {
     const [photoSrc, setPhotoSrc] = useState('');
+    const history = useHistory()
 
     useEffect(() => {
         //get url that defines card subject and remove last "/"
@@ -29,9 +33,14 @@ export function Card(props: CardProps) {
 
     }, [props.cardType, props.photo])
 
+    function handleClick() {
+        if (props.clickable && props.redirectTo) {
+            history.push(props.redirectTo)
+        }
+    }
 
     return (
-        <Container>
+        <Container onClick={handleClick} className={props.clickable ? "clickable" : ""}>
             <Photo src={photoSrc || error} />
             <Text>
                 <Line>

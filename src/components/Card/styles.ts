@@ -10,6 +10,14 @@ width: 426px;
 display: flex;
 gap: 20px;
 align-items: center;
+transition: border-color 0.3s linear;
+.clickable&{
+    cursor: pointer;
+    &:hover&{
+
+        border-color: hsl(45,89%,25%);
+    }
+}
 @media (max-width:1440px){
     width:400px;
 }
