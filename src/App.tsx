@@ -10,6 +10,7 @@ import { PlanetSingle } from './pages/PlanetSingle'
 import { Starships } from './pages/Starships'
 import { StarshipSingle } from './pages/StarshipSingle'
 import { Vehicles } from './pages/Vehicles'
+import { VehicleSingle } from './pages/VehicleSingle'
 import { NotFound } from './pages/404'
 
 import { Header } from './components/Header'
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/starships" component={Starships} />
           <Route path="/starships/:name" component={StarshipSingle} />
           <Route exact path="/vehicles" component={Vehicles} />
+          <Route path="/vehicles/:name" component={VehicleSingle} />
           <Route exact path="/404" component={NotFound} />
         </Switch>
       </BrowserRouter>
