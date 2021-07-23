@@ -47,7 +47,8 @@ export function Planets() {
                         info3={planet.terrain}
                         photo={planet.id}
                         cardType="planet"
-
+                        clickable
+                        redirectTo={`/planets/${planet.name}`}
                     />) :
 
                 <Loading />
