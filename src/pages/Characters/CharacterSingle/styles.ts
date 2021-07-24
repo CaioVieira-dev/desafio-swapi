@@ -41,4 +41,9 @@ export const Photo = styled.img`
 width:403px;
 height:554px;
 border-radius: 8px;
+@media(max-width:500px){
+    width:232px;
+    height: 318px;
+}
+
 `

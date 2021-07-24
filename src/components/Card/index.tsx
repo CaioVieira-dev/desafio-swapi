@@ -32,7 +32,6 @@ export function Card(props: CardProps) {
                 //prevent break when cardtype or photoid is wrong
                 console.error(e)
             }).then((res) => {
-                console.log(res)
                 if (res.default) {
                     //set photoSrc
                     setPhotoSrc(res.default)
