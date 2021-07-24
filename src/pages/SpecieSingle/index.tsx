@@ -27,32 +27,6 @@ export function SpecieSingle() {
     const [specieData, setSpecieData] = useState<SpecieDataType>()
     const [photo, setPhoto] = useState()
 
-    async function findSpecie(name: string) {
-        return (await Species.findBySearch([name])).resources.map(entry => entry.value)
-    }
-    async function findHomeworldName(planetUrl: string | IPlanet) {
-        return (await Planets.find(world => world.url === planetUrl)).resources.map(entry => entry.value.name)
-    }
-    async function findFilmsNames(filmsUrlArray: string[] | IFilm[]) {
-        return (await Films.find(film => {
-            for (let i = 0; i < filmsUrlArray.length; i++) {
-                if (film.url === filmsUrlArray[i]) {
-                    return true;
-                }
-            }
-            return false;
-        })).resources.map(entry => entry.value.title)
-    }
-    async function findPeopleNames(peopleUrl: string[] | IPeople[]) {
-        return (await People.find(individual => {
-            for (let i = 0; i < peopleUrl.length; i++) {
-                if (individual.url === peopleUrl[i]) {
-                    return true;
-                }
-            }
-            return false;
-        })).resources.map(entry => entry.value.name)
-    }
     useEffect(() => {
         async function apiCall() {
             let preparedSpecie = {} as SpecieDataType;
@@ -110,6 +84,34 @@ export function SpecieSingle() {
 
         apiCall();
     }, [params.name, history])
+
+
+    async function findSpecie(name: string) {
+        return (await Species.findBySearch([name])).resources.map(entry => entry.value)
+    }
+    async function findHomeworldName(planetUrl: string | IPlanet) {
+        return (await Planets.find(world => world.url === planetUrl)).resources.map(entry => entry.value.name)
+    }
+    async function findFilmsNames(filmsUrlArray: string[] | IFilm[]) {
+        return (await Films.find(film => {
+            for (let i = 0; i < filmsUrlArray.length; i++) {
+                if (film.url === filmsUrlArray[i]) {
+                    return true;
+                }
+            }
+            return false;
+        })).resources.map(entry => entry.value.title)
+    }
+    async function findPeopleNames(peopleUrl: string[] | IPeople[]) {
+        return (await People.find(individual => {
+            for (let i = 0; i < peopleUrl.length; i++) {
+                if (individual.url === peopleUrl[i]) {
+                    return true;
+                }
+            }
+            return false;
+        })).resources.map(entry => entry.value.name)
+    }
 
     return (
         <Container>

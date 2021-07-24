@@ -33,46 +33,6 @@ export function CharacterSingle() {
     const [characterData, setCharacterData] = useState<CharacterDataType>()
     const [photo, setPhoto] = useState()
 
-    async function findCharacter(name: string) {
-        return (await People.findBySearch([name])).resources.map(entry => entry.value)
-    }
-    async function findSpecieName(specieUrl: string | ISpecie) {
-        return (await Species.find(specie => specie.url === specieUrl)).resources.find(entry => entry.value.url === specieUrl);
-    }
-    async function findStarshipsNames(starshipsUrlArray: string[] | IStarship[]) {
-        return (await Starships.find(ship => {
-            for (let i = 0; i < starshipsUrlArray.length; i++) {
-                if (ship.url === starshipsUrlArray[i]) {
-                    return true;
-                }
-            }
-            return false;
-
-        })).resources.map(entry => entry.value.name)
-    }
-    async function findFilmsNames(filmsUrlArray: string[] | IFilm[]) {
-        return (await Films.find(film => {
-            for (let i = 0; i < filmsUrlArray.length; i++) {
-                if (film.url === filmsUrlArray[i]) {
-                    return true;
-                }
-            }
-            return false;
-        })).resources.map(entry => entry.value.title)
-    }
-    async function findVehiclesNames(vehiclesUrlArray: string[] | IVehicle[]) {
-        return (await Vehicles.find(vehicle => {
-            for (let i = 0; i < vehiclesUrlArray.length; i++) {
-                if (vehicle.url === vehiclesUrlArray[i]) {
-                    return true;
-                }
-            }
-            return false;
-        })).resources.map(entry => entry.value.name)
-    }
-    async function findHomeworldName(planetUrl: string | IPlanet) {
-        return (await Planets.find(world => world.url === planetUrl)).resources.map(entry => entry.value.name)
-    }
 
     useEffect(() => {
         async function apiCall() {
@@ -139,7 +99,48 @@ export function CharacterSingle() {
         }
         apiCall()
     }, [params.name, history])
-    console.log(characterData)
+
+    async function findCharacter(name: string) {
+        return (await People.findBySearch([name])).resources.map(entry => entry.value)
+    }
+    async function findSpecieName(specieUrl: string | ISpecie) {
+        return (await Species.find(specie => specie.url === specieUrl)).resources.find(entry => entry.value.url === specieUrl);
+    }
+    async function findStarshipsNames(starshipsUrlArray: string[] | IStarship[]) {
+        return (await Starships.find(ship => {
+            for (let i = 0; i < starshipsUrlArray.length; i++) {
+                if (ship.url === starshipsUrlArray[i]) {
+                    return true;
+                }
+            }
+            return false;
+
+        })).resources.map(entry => entry.value.name)
+    }
+    async function findFilmsNames(filmsUrlArray: string[] | IFilm[]) {
+        return (await Films.find(film => {
+            for (let i = 0; i < filmsUrlArray.length; i++) {
+                if (film.url === filmsUrlArray[i]) {
+                    return true;
+                }
+            }
+            return false;
+        })).resources.map(entry => entry.value.title)
+    }
+    async function findVehiclesNames(vehiclesUrlArray: string[] | IVehicle[]) {
+        return (await Vehicles.find(vehicle => {
+            for (let i = 0; i < vehiclesUrlArray.length; i++) {
+                if (vehicle.url === vehiclesUrlArray[i]) {
+                    return true;
+                }
+            }
+            return false;
+        })).resources.map(entry => entry.value.name)
+    }
+    async function findHomeworldName(planetUrl: string | IPlanet) {
+        return (await Planets.find(world => world.url === planetUrl)).resources.map(entry => entry.value.name)
+    }
+
     return (
         <Container>
             {characterData ? <>

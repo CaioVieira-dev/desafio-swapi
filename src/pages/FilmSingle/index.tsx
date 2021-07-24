@@ -39,67 +39,6 @@ export function FilmSingle() {
     const [filmData, setFilmData] = useState<FilmDataType>()
     const [photo, setPhoto] = useState()
 
-    async function findFilm(title: string) {
-        return (await Films.findBySearch([title])).resources.map(entry => entry.value)
-    }
-    function formatDate(date: string) {
-        const yyyy = date.substr(0, 4);
-        const mm = date.substr(5, 2);
-        const dd = date.substr(8, 2);
-        return `${dd}/${mm}/${yyyy}`
-    }
-    async function findStarshipsNames(starshipsUrlArray: string[] | IStarship[]) {
-        return (await Starships.find(ship => {
-            for (let i = 0; i < starshipsUrlArray.length; i++) {
-                if (ship.url === starshipsUrlArray[i]) {
-                    return true;
-                }
-            }
-            return false;
-
-        })).resources.map(entry => entry.value.name)
-    }
-    async function findSpeciesNames(specieUrl: string[] | ISpecie[]) {
-        return (await Species.find(specie => {
-            for (let i = 0; i < specieUrl.length; i++) {
-                if (specie.url === specieUrl[i]) {
-                    return true;
-                }
-            }
-            return false;
-        })).resources.map(entry => entry.value.name);
-    }
-    async function findVehiclesNames(vehiclesUrlArray: string[] | IVehicle[]) {
-        return (await Vehicles.find(vehicle => {
-            for (let i = 0; i < vehiclesUrlArray.length; i++) {
-                if (vehicle.url === vehiclesUrlArray[i]) {
-                    return true;
-                }
-            }
-            return false;
-        })).resources.map(entry => entry.value.name)
-    }
-    async function findPlanetsNames(planetUrl: string[] | IPlanet[]) {
-        return (await Planets.find(planet => {
-            for (let i = 0; i < planetUrl.length; i++) {
-                if (planet.url === planetUrl[i]) {
-                    return true;
-                }
-            }
-            return false;
-        })).resources.map(entry => entry.value.name)
-    }
-    async function findCharactersNames(characterUrl: string[] | IPeople[]) {
-        return (await People.find(individual => {
-            for (let i = 0; i < characterUrl.length; i++) {
-                if (individual.url === characterUrl[i]) {
-                    return true;
-                }
-            }
-            return false;
-        })).resources.map(entry => entry.value.name)
-    }
-
     useEffect(() => {
         async function apiCall() {
             let preparedFilm = {} as FilmDataType;
@@ -165,6 +104,69 @@ export function FilmSingle() {
 
         apiCall();
     }, [params.name, history])
+
+
+    async function findFilm(title: string) {
+        return (await Films.findBySearch([title])).resources.map(entry => entry.value)
+    }
+    function formatDate(date: string) {
+        const yyyy = date.substr(0, 4);
+        const mm = date.substr(5, 2);
+        const dd = date.substr(8, 2);
+        return `${dd}/${mm}/${yyyy}`
+    }
+    async function findStarshipsNames(starshipsUrlArray: string[] | IStarship[]) {
+        return (await Starships.find(ship => {
+            for (let i = 0; i < starshipsUrlArray.length; i++) {
+                if (ship.url === starshipsUrlArray[i]) {
+                    return true;
+                }
+            }
+            return false;
+
+        })).resources.map(entry => entry.value.name)
+    }
+    async function findSpeciesNames(specieUrl: string[] | ISpecie[]) {
+        return (await Species.find(specie => {
+            for (let i = 0; i < specieUrl.length; i++) {
+                if (specie.url === specieUrl[i]) {
+                    return true;
+                }
+            }
+            return false;
+        })).resources.map(entry => entry.value.name);
+    }
+    async function findVehiclesNames(vehiclesUrlArray: string[] | IVehicle[]) {
+        return (await Vehicles.find(vehicle => {
+            for (let i = 0; i < vehiclesUrlArray.length; i++) {
+                if (vehicle.url === vehiclesUrlArray[i]) {
+                    return true;
+                }
+            }
+            return false;
+        })).resources.map(entry => entry.value.name)
+    }
+    async function findPlanetsNames(planetUrl: string[] | IPlanet[]) {
+        return (await Planets.find(planet => {
+            for (let i = 0; i < planetUrl.length; i++) {
+                if (planet.url === planetUrl[i]) {
+                    return true;
+                }
+            }
+            return false;
+        })).resources.map(entry => entry.value.name)
+    }
+    async function findCharactersNames(characterUrl: string[] | IPeople[]) {
+        return (await People.find(individual => {
+            for (let i = 0; i < characterUrl.length; i++) {
+                if (individual.url === characterUrl[i]) {
+                    return true;
+                }
+            }
+            return false;
+        })).resources.map(entry => entry.value.name)
+    }
+
 
     return (
         <Container>

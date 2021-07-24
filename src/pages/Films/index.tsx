@@ -16,12 +16,6 @@ type FilmType = {
 export function Films() {
     const [filmList, setFilmList] = useState<FilmType[]>()
 
-    function formatDate(date: string) {
-        const yyyy = date.substr(0, 4);
-        const mm = date.substr(5, 2);
-        const dd = date.substr(8, 2);
-        return `${dd}/${mm}/${yyyy}`
-    }
 
     useEffect(() => {
         async function apiCall() {
@@ -41,6 +35,12 @@ export function Films() {
 
         apiCall();
     }, [])
+    function formatDate(date: string) {
+        const yyyy = date.substr(0, 4);
+        const mm = date.substr(5, 2);
+        const dd = date.substr(8, 2);
+        return `${dd}/${mm}/${yyyy}`
+    }
 
     return (
         <Container>

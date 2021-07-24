@@ -30,29 +30,6 @@ export function StarshipSingle() {
     const [starshipData, setStarshipData] = useState<StarshipDataType>()
     const [photo, setPhoto] = useState()
 
-    async function findStarship(name: string) {
-        return (await Starships.findBySearch([name])).resources.map(entry => entry.value)
-    }
-    async function findPilotNames(pilotUrl: string[] | IPeople[]) {
-        return (await People.find(individual => {
-            for (let i = 0; i < pilotUrl.length; i++) {
-                if (individual.url === pilotUrl[i]) {
-                    return true;
-                }
-            }
-            return false;
-        })).resources.map(entry => entry.value.name)
-    }
-    async function findFilmsNames(filmsUrlArray: string[] | IFilm[]) {
-        return (await Films.find(film => {
-            for (let i = 0; i < filmsUrlArray.length; i++) {
-                if (film.url === filmsUrlArray[i]) {
-                    return true;
-                }
-            }
-            return false;
-        })).resources.map(entry => entry.value.title)
-    }
     useEffect(() => {
         async function apiCall() {
             let preparedStarship = {} as StarshipDataType;
@@ -102,6 +79,29 @@ export function StarshipSingle() {
         apiCall();
     }, [params.name])
 
+    async function findStarship(name: string) {
+        return (await Starships.findBySearch([name])).resources.map(entry => entry.value)
+    }
+    async function findPilotNames(pilotUrl: string[] | IPeople[]) {
+        return (await People.find(individual => {
+            for (let i = 0; i < pilotUrl.length; i++) {
+                if (individual.url === pilotUrl[i]) {
+                    return true;
+                }
+            }
+            return false;
+        })).resources.map(entry => entry.value.name)
+    }
+    async function findFilmsNames(filmsUrlArray: string[] | IFilm[]) {
+        return (await Films.find(film => {
+            for (let i = 0; i < filmsUrlArray.length; i++) {
+                if (film.url === filmsUrlArray[i]) {
+                    return true;
+                }
+            }
+            return false;
+        })).resources.map(entry => entry.value.title)
+    }
     return (
         <Container>
             {starshipData ? <>

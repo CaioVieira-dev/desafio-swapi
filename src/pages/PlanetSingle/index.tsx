@@ -28,29 +28,6 @@ export function PlanetSingle() {
     const [planetData, setPlanetData] = useState<PlanetDataType>()
     const [photo, setPhoto] = useState();
 
-    async function findPlanet(planet: string) {
-        return (await Planets.findBySearch([planet])).resources.map(entry => entry.value)
-    }
-    async function findResidentsNames(residentsUrl: string[] | IPeople[]) {
-        return (await People.find(individual => {
-            for (let i = 0; i < residentsUrl.length; i++) {
-                if (individual.url === residentsUrl[i]) {
-                    return true;
-                }
-            }
-            return false;
-        })).resources.map(entry => entry.value.name)
-    }
-    async function findFilmsNames(filmsUrlArray: string[] | IFilm[]) {
-        return (await Films.find(film => {
-            for (let i = 0; i < filmsUrlArray.length; i++) {
-                if (film.url === filmsUrlArray[i]) {
-                    return true;
-                }
-            }
-            return false;
-        })).resources.map(entry => entry.value.title)
-    }
 
     useEffect(() => {
         async function apiCall() {
@@ -102,6 +79,31 @@ export function PlanetSingle() {
 
         apiCall();
     }, [params.name, history])
+
+
+    async function findPlanet(planet: string) {
+        return (await Planets.findBySearch([planet])).resources.map(entry => entry.value)
+    }
+    async function findResidentsNames(residentsUrl: string[] | IPeople[]) {
+        return (await People.find(individual => {
+            for (let i = 0; i < residentsUrl.length; i++) {
+                if (individual.url === residentsUrl[i]) {
+                    return true;
+                }
+            }
+            return false;
+        })).resources.map(entry => entry.value.name)
+    }
+    async function findFilmsNames(filmsUrlArray: string[] | IFilm[]) {
+        return (await Films.find(film => {
+            for (let i = 0; i < filmsUrlArray.length; i++) {
+                if (film.url === filmsUrlArray[i]) {
+                    return true;
+                }
+            }
+            return false;
+        })).resources.map(entry => entry.value.title)
+    }
 
     return (
         <Container>
