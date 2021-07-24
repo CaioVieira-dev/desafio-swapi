@@ -1,8 +1,8 @@
-import error from '../../assets/erro.jpg'
+import error from '../../../assets/erro.jpg'
 import { Container, Field, Info, Line, Photo, Text } from './styles'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react';
-import { Loading } from '../../components/Load';
+import { Loading } from '../../../components/Load';
 
 import { Vehicles, People, IPeople, Films, IFilm } from 'swapi-ts';
 
@@ -66,7 +66,7 @@ export function VehicleSingle() {
             setVehicleData(preparedVehicle);
             const vehicleId = vehicle[0].url.replace(/\/$/g, "");
             const photoId = vehicleId.substring(vehicleId.lastIndexOf('/') + 1);
-            import(`../../assets/vehicles/${photoId}.jpg`)
+            import(`../../../assets/vehicles/${photoId}.jpg`)
                 .catch(() => {
                 }).then((res) => {
                     //set photoSrc

@@ -1,8 +1,8 @@
-import error from '../../assets/erro.jpg'
+import error from '../../../assets/erro.jpg'
 import { Container, Field, Info, Line, Photo, Text } from './styles'
 import { useParams, useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react';
-import { Loading } from '../../components/Load';
+import { Loading } from '../../../components/Load';
 import { Species, Planets, IPlanet, Films, IFilm, People, IPeople } from 'swapi-ts'
 
 type SpecieDataType = {
@@ -72,7 +72,7 @@ export function SpecieSingle() {
             setSpecieData(preparedSpecie);
             const specieId = specie[0].url.replace(/\/$/g, "");
             const photoId = specieId.substring(specieId.lastIndexOf('/') + 1);
-            import(`../../assets/species/${photoId}.jpg`)
+            import(`../../../assets/species/${photoId}.jpg`)
                 .catch(() => {
                 }).then((res) => {
                     //set photoSrc

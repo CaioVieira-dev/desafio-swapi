@@ -1,4 +1,4 @@
-import error from '../../assets/erro.jpg'
+import error from '../../../assets/erro.jpg'
 import { Container, Field, Info, Line, Photo, Text } from './styles'
 import { useParams, useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react';
@@ -11,7 +11,7 @@ import {
     Vehicles,
     Planets, ISpecie, IStarship, IFilm, IVehicle, IPlanet
 } from 'swapi-ts'
-import { Loading } from '../../components/Load';
+import { Loading } from '../../../components/Load';
 
 type CharacterDataType = {
     name: string;
@@ -90,7 +90,7 @@ export function CharacterSingle() {
             setCharacterData(char)
             const charId = character[0].url.replace(/\/$/g, "");
             const photoId = charId.substring(charId.lastIndexOf('/') + 1);
-            import(`../../assets/characters/${photoId}.jpg`)
+            import(`../../../assets/characters/${photoId}.jpg`)
                 .catch(() => {
                 }).then((res) => {
                     //set photoSrc

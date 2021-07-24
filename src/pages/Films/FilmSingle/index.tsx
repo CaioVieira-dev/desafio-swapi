@@ -1,8 +1,8 @@
-import error from '../../assets/erro.jpg'
+import error from '../../../assets/erro.jpg'
 import { Container, Field, Info, Line, Photo, Text } from './styles'
 import { useParams, useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react';
-import { Loading } from '../../components/Load';
+import { Loading } from '../../../components/Load';
 
 import {
     People,
@@ -93,7 +93,7 @@ export function FilmSingle() {
             setFilmData(preparedFilm);
             const filmId = film[0].url.replace(/\/$/g, "");
             const photoId = filmId.substring(filmId.lastIndexOf('/') + 1);
-            import(`../../assets/films/${photoId}.jpg`)
+            import(`../../../assets/films/${photoId}.jpg`)
                 .catch(() => {
                 }).then((res) => {
                     //set photoSrc

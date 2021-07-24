@@ -1,8 +1,8 @@
-import error from '../../assets/erro.jpg'
+import error from '../../../assets/erro.jpg'
 import { Container, Field, Info, Line, Photo, Text } from './styles'
 import { useParams, useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react';
-import { Loading } from '../../components/Load';
+import { Loading } from '../../../components/Load';
 import { Planets, People, Films, IFilm, IPeople } from 'swapi-ts'
 
 type PlanetDataType = {
@@ -67,7 +67,7 @@ export function PlanetSingle() {
 
             const planetId = planet[0].url.replace(/\/$/g, "");
             const photoId = planetId.substring(planetId.lastIndexOf('/') + 1);
-            import(`../../assets/planets/${photoId}.jpg`)
+            import(`../../../assets/planets/${photoId}.jpg`)
                 .catch((e) => {
                     console.error(e)
                 }).then((res) => {

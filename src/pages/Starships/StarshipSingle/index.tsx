@@ -1,8 +1,8 @@
-import error from '../../assets/erro.jpg'
+import error from '../../../assets/erro.jpg'
 import { Container, Field, Info, Line, Photo, Text } from './styles'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react';
-import { Loading } from '../../components/Load';
+import { Loading } from '../../../components/Load';
 import { Starships, People, IPeople, Films, IFilm } from 'swapi-ts'
 
 type StarshipDataType = {
@@ -66,7 +66,7 @@ export function StarshipSingle() {
 
             const shipId = starship[0].url.replace(/\/$/g, "");
             const photoId = shipId.substring(shipId.lastIndexOf('/') + 1);
-            import(`../../assets/starships/${photoId}.jpg`)
+            import(`../../../assets/starships/${photoId}.jpg`)
                 .catch(() => {
                 }).then((res) => {
                     //set photoSrc
