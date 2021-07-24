@@ -1,7 +1,7 @@
 # Consumindo a SWAPI
 <img src="./.github/banner.png">
 
-
+[Veja o site no netlify](https://consumindo-swapi-caiovieira-dev.netlify.app/)
 ### Descrição
 Um aplicação SPA que consome a SWAPI (Star Wars API).
 
