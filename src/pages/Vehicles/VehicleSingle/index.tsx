@@ -1,8 +1,10 @@
-import error from '../../../assets/erro.jpg'
-import { Container, Field, Info, Line, Photo, Text } from './styles'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react';
+
+import { Container, Field, Info, Line, Photo, Text } from './styles'
 import { Loading } from '../../../components/Load';
+
+import error from '../../../assets/erro.jpg'
 
 import { Vehicles, People, IPeople, Films, IFilm } from 'swapi-ts';
 
@@ -49,13 +51,14 @@ export function VehicleSingle() {
                 passengers: vehicle[0].passengers,
                 vehicleClass: vehicle[0].vehicle_class
             }
-
+            //if pilots array is not empty
             if (vehicle[0].pilots.length >= 1) {
                 const pilots = await findPilotNames(vehicle[0].pilots);
                 preparedVehicle.pilots = pilots.join(', ');
             } else {
                 preparedVehicle.pilots = "não possui"
             }
+            //if films array is not empty
             if (vehicle[0].films.length >= 1) {
                 const films = await findFilmsNames(vehicle[0].films);
                 preparedVehicle.films = films.join(', ');
@@ -64,6 +67,7 @@ export function VehicleSingle() {
             }
 
             setVehicleData(preparedVehicle);
+            //dynamic import photo
             const vehicleId = vehicle[0].url.replace(/\/$/g, "");
             const photoId = vehicleId.substring(vehicleId.lastIndexOf('/') + 1);
             import(`../../../assets/vehicles/${photoId}.jpg`)

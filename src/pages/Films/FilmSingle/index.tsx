@@ -1,8 +1,10 @@
-import error from '../../../assets/erro.jpg'
-import { Container, Field, Info, Line, Photo, Text } from './styles'
 import { useParams, useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react';
+
+import { Container, Field, Info, Line, Photo, Text } from './styles'
 import { Loading } from '../../../components/Load';
+
+import error from '../../../assets/erro.jpg'
 
 import {
     People,
@@ -59,30 +61,35 @@ export function FilmSingle() {
                 releaseDate: formatDate(film[0].release_date.toString()),
                 openingCrawl: film[0].opening_crawl
             }
+            //if starships array is not empty
             if (film[0].starships.length >= 1) {
                 const starships = await findStarshipsNames(film[0].starships);
                 preparedFilm.starships = starships.join(', ');
             } else {
                 preparedFilm.starships = "sem participação"
             }
+            //if species array is not empty
             if (film[0].species.length >= 1) {
                 const species = await findSpeciesNames(film[0].species);
                 preparedFilm.species = species.join(', ');
             } else {
                 preparedFilm.species = "sem participações"
             }
+            //if vehicle array is not empty
             if (film[0].vehicles.length >= 1) {
                 const vehicles = await findVehiclesNames(film[0].vehicles);
                 preparedFilm.vehicles = vehicles.join(', ');
             } else {
                 preparedFilm.vehicles = "sem participações"
             }
+            //if planets array is not empty
             if (film[0].planets.length >= 1) {
                 const planets = await findPlanetsNames(film[0].planets);
                 preparedFilm.planets = planets.join(', ');
             } else {
                 preparedFilm.planets = "sem participações";
             }
+            //if characters array is not empty
             if (film[0].characters.length >= 1) {
                 const characters = await findCharactersNames(film[0].characters);
                 preparedFilm.characters = characters.join(', ');
@@ -91,6 +98,7 @@ export function FilmSingle() {
             }
 
             setFilmData(preparedFilm);
+            //dynamic import photo
             const filmId = film[0].url.replace(/\/$/g, "");
             const photoId = filmId.substring(filmId.lastIndexOf('/') + 1);
             import(`../../../assets/films/${photoId}.jpg`)

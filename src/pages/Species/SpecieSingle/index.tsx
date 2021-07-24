@@ -1,8 +1,11 @@
-import error from '../../../assets/erro.jpg'
-import { Container, Field, Info, Line, Photo, Text } from './styles'
 import { useParams, useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react';
+
+import { Container, Field, Info, Line, Photo, Text } from './styles'
 import { Loading } from '../../../components/Load';
+
+import error from '../../../assets/erro.jpg'
+
 import { Species, Planets, IPlanet, Films, IFilm, People, IPeople } from 'swapi-ts'
 
 type SpecieDataType = {
@@ -51,18 +54,21 @@ export function SpecieSingle() {
                 skinColors: specie[0].skin_colors,
 
             }
+            //if homeworld array is not empty
             if (specie[0].homeworld) {
                 const homeworld = await findHomeworldName(specie[0].homeworld);
                 preparedSpecie.homeworld = homeworld.join(', ');
             } else {
                 preparedSpecie.homeworld = "não possui"
             }
+            //if films array is not empty
             if (specie[0].films.length >= 1) {
                 const films = await findFilmsNames(specie[0].films)
                 preparedSpecie.films = films.join(', ')
             } else {
                 preparedSpecie.films = "sem participações"
             }
+            //if people array is not empty
             if (specie[0].people.length >= 1) {
                 const people = await findPeopleNames(specie[0].people);
                 preparedSpecie.people = people.join(', ')
@@ -70,6 +76,7 @@ export function SpecieSingle() {
                 preparedSpecie.people = "sem participações"
             }
             setSpecieData(preparedSpecie);
+            //dynamic import photo
             const specieId = specie[0].url.replace(/\/$/g, "");
             const photoId = specieId.substring(specieId.lastIndexOf('/') + 1);
             import(`../../../assets/species/${photoId}.jpg`)

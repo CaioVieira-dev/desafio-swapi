@@ -1,8 +1,11 @@
-import error from '../../../assets/erro.jpg'
-import { Container, Field, Info, Line, Photo, Text } from './styles'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react';
+
+import { Container, Field, Info, Line, Photo, Text } from './styles'
 import { Loading } from '../../../components/Load';
+
+import error from '../../../assets/erro.jpg'
+
 import { Starships, People, IPeople, Films, IFilm } from 'swapi-ts'
 
 type StarshipDataType = {
@@ -48,13 +51,14 @@ export function StarshipSingle() {
             preparedStarship.model = starship[0].model
             preparedStarship.passengers = starship[0].passengers
             preparedStarship.starshipClass = starship[0].starship_class
-
+            //if pilots array is not empty
             if (starship[0].pilots.length >= 1) {
                 const pilots = await findPilotNames(starship[0].pilots);
                 preparedStarship.pilots = pilots.join(', ');
             } else {
                 preparedStarship.pilots = 'não possui'
             }
+            //if films array is not empty
             if (starship[0].films.length >= 1) {
                 const films = await findFilmsNames(starship[0].films)
                 preparedStarship.films = films.join(', ');
@@ -63,7 +67,7 @@ export function StarshipSingle() {
             }
             //set starship data
             setStarshipData(preparedStarship)
-
+            //dynamic import photo
             const shipId = starship[0].url.replace(/\/$/g, "");
             const photoId = shipId.substring(shipId.lastIndexOf('/') + 1);
             import(`../../../assets/starships/${photoId}.jpg`)

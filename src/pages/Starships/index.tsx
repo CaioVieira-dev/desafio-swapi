@@ -1,9 +1,9 @@
-import { Container } from './styles'
-
-
 import { useEffect, useState } from 'react'
+
+import { Container } from './styles'
 import { Card } from '../../components/Card'
 import { Loading } from '../../components/Load'
+
 import { Starships as SWStarships } from 'swapi-ts'
 
 type StarshipType = {

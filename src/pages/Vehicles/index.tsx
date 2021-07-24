@@ -1,9 +1,9 @@
-import { Container } from './styles'
-
-
 import { useEffect, useState } from 'react'
+
+import { Container } from './styles'
 import { Card } from '../../components/Card'
 import { Loading } from '../../components/Load'
+
 import { Vehicles as SWVehicles } from 'swapi-ts'
 
 type VehicleType = {
@@ -18,7 +18,9 @@ export function Vehicles() {
 
     useEffect(() => {
         async function apiCall() {
+            //get all vehicles
             const vehicles = await SWVehicles.find();
+            //get cardInfo
             const cardInfo = vehicles.resources.map(vehicle => {
                 return {
                     name: vehicle.value.name,

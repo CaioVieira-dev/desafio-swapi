@@ -1,8 +1,11 @@
-import error from '../../../assets/erro.jpg'
-import { Container, Field, Info, Line, Photo, Text } from './styles'
 import { useParams, useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react';
+
+import { Container, Field, Info, Line, Photo, Text } from './styles'
 import { Loading } from '../../../components/Load';
+
+import error from '../../../assets/erro.jpg'
+
 import { Planets, People, Films, IFilm, IPeople } from 'swapi-ts'
 
 type PlanetDataType = {
@@ -48,14 +51,14 @@ export function PlanetSingle() {
             preparedPlanet.surfaceWater = planet[0].surface_water;
             preparedPlanet.rotationPeriod = planet[0].rotation_period;
             preparedPlanet.terrain = planet[0].terrain;
-
+            //if residents array is not empty
             if (planet[0].residents.length >= 1) {
                 const residents = await findResidentsNames(planet[0].residents)
                 preparedPlanet.residents = residents.join(', ')
             } else {
                 preparedPlanet.residents = "Sem personagens residentes"
             }
-
+            //if film array is not empty
             if (planet[0].films.length >= 1) {
                 const films = await findFilmsNames(planet[0].films);
                 preparedPlanet.films = films.join(', ')
@@ -64,7 +67,7 @@ export function PlanetSingle() {
             }
             //set planet data
             setPlanetData(preparedPlanet);
-
+            //dynamic import photo
             const planetId = planet[0].url.replace(/\/$/g, "");
             const photoId = planetId.substring(planetId.lastIndexOf('/') + 1);
             import(`../../../assets/planets/${photoId}.jpg`)

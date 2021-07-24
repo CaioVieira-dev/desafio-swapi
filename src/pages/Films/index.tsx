@@ -1,7 +1,6 @@
-import { Container } from './styles'
-
-
 import { useEffect, useState } from 'react'
+
+import { Container } from './styles'
 import { Card } from '../../components/Card'
 import { Loading } from '../../components/Load'
 

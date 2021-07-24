@@ -1,7 +1,9 @@
-import error from '../../../assets/erro.jpg'
-import { Container, Field, Info, Line, Photo, Text } from './styles'
 import { useParams, useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react';
+
+import { Container, Field, Info, Line, Photo, Text } from './styles'
+
+import error from '../../../assets/erro.jpg'
 
 import {
     People,
@@ -38,7 +40,7 @@ export function CharacterSingle() {
         async function apiCall() {
             let char = {} as CharacterDataType;
             const character = await findCharacter(params.name);
-            console.log(character)
+
             if (character.length !== 1) {
                 //search failed, search should get only one character
                 console.error("Invalid search parameter: search should get only one character")
@@ -51,6 +53,7 @@ export function CharacterSingle() {
             char.gender = character[0].gender === 'male' ? "masculino" : character[0].gender === 'female' ? 'feminino' : character[0].gender;
             char.mass = character[0].mass;
 
+            //if species array is not empty
             if (character[0].species.length >= 1) {
                 const species = await findSpecieName(character[0].species[0])
                 if (species) {
@@ -61,24 +64,28 @@ export function CharacterSingle() {
             } else {
                 char.species = "desconhecido"
             }
+            //if starships array is not empty
             if (character[0].starships.length >= 1) {
                 const ships = await findStarshipsNames(character[0].starships)
                 char.starships = ships.join(', ')
             } else {
                 char.starships = "não possui"
             }
+            //if films array is not empty
             if (character[0].films.length >= 1) {
                 const films = await findFilmsNames(character[0].films)
                 char.films = films.join(', ')
             } else {
                 char.films = "sem participações"
             }
+            //if vehicles array is not empty
             if (character[0].vehicles.length >= 1) {
                 const vehicles = await findVehiclesNames(character[0].vehicles)
                 char.vehicles = vehicles.join(', ')
             } else {
                 char.vehicles = "não possui"
             }
+            //if homeworld array is not empty
             if (character[0].homeworld) {
                 const homeworld = await findHomeworldName(character[0].homeworld)
 
@@ -88,12 +95,13 @@ export function CharacterSingle() {
             }
 
             setCharacterData(char)
+            //dynamic import photo
             const charId = character[0].url.replace(/\/$/g, "");
             const photoId = charId.substring(charId.lastIndexOf('/') + 1);
             import(`../../../assets/characters/${photoId}.jpg`)
                 .catch(() => {
                 }).then((res) => {
-                    //set photoSrc
+                    //set photo
                     setPhoto(res.default)
                 })
         }
