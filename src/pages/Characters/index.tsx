@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { Container } from './styles'
+import { Container, Button, ButtonContainer } from './styles'
 import { Card } from '../../components/Card'
 import { Loading } from '../../components/Load'
 
@@ -15,6 +15,7 @@ type CharacterType = {
 
 export function Characters() {
     const [characterList, setCharacterList] = useState<CharacterType[]>()
+    const [forceUpdate, setForceUpdate] = useState(false);
 
     useEffect(() => {
         async function apiCall() {
@@ -38,9 +39,45 @@ export function Characters() {
         }
         apiCall()
     }, [])
+    function sortAZ() {
+        let list = characterList;
+        list?.sort((a, b) => {
+            const nameA = a.name.toLowerCase()
+            const nameB = b.name.toLowerCase();
+            if (nameA < nameB) //sort string ascending
+                return -1;
+            if (nameA > nameB)
+                return 1;
+            return 0; //default return value (no sorting)
+        })
+
+        setCharacterList(list)
+        setForceUpdate(!forceUpdate)
+
+    }
+    function sortZA() {
+        let list = characterList;
+        list?.sort((a, b) => {
+            const nameA = a.name.toLowerCase()
+            const nameB = b.name.toLowerCase();
+            if (nameA > nameB) //sort string descending
+                return -1;
+            if (nameA < nameB)
+                return 1;
+            return 0; //default return value (no sorting)
+        })
+        setCharacterList(list)
+        setForceUpdate(!forceUpdate)
+    }
 
     return (
         <>
+            {characterList &&
+                <ButtonContainer>
+                    <Button onClick={sortAZ}>Ordenar A-Z</Button>
+                    <Button onClick={sortZA}>Ordenar Z-A</Button>
+                </ButtonContainer>
+            }
             <Container>
                 {characterList ?
                     characterList.map((character) =>

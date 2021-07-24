@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { Container } from './styles'
+import { Container, Button, ButtonContainer } from './styles'
 import { Card } from '../../components/Card'
 import { Loading } from '../../components/Load'
 
@@ -15,7 +15,7 @@ type StarshipType = {
 
 export function Starships() {
     const [starshipList, setStarshipList] = useState<StarshipType[]>();
-
+    const [forceUpdate, setForceUpdate] = useState(false);
     useEffect(() => {
         //nome passageiros e velocidade(mglt)
         async function apiCall() {
@@ -36,26 +36,64 @@ export function Starships() {
 
         apiCall();
     }, [])
+    function sortAZ() {
+        let list = starshipList;
+        list?.sort((a, b) => {
+            const nameA = a.name.toLowerCase()
+            const nameB = b.name.toLowerCase();
+            if (nameA < nameB) //sort string ascending
+                return -1;
+            if (nameA > nameB)
+                return 1;
+            return 0; //default return value (no sorting)
+        })
+
+        setStarshipList(list)
+        setForceUpdate(!forceUpdate)
+
+    }
+    function sortZA() {
+        let list = starshipList;
+        list?.sort((a, b) => {
+            const nameA = a.name.toLowerCase()
+            const nameB = b.name.toLowerCase();
+            if (nameA > nameB) //sort string descending
+                return -1;
+            if (nameA < nameB)
+                return 1;
+            return 0; //default return value (no sorting)
+        })
+        setStarshipList(list)
+        setForceUpdate(!forceUpdate)
+    }
 
     return (
-        <Container>
-            {starshipList ?
-                starshipList.map(ship =>
-                    <Card
-                        key={ship.id}
-                        field1="Nome:"
-                        info1={ship.name}
-                        field2="Passageiros:"
-                        info2={ship.passengers}
-                        field3="Velocidade:"
-                        info3={`${ship.speed} MGLT`}
-                        photo={ship.id}
-                        cardType="starship"
-                        clickable
-                        redirectTo={`/starships/${ship.name}`}
-                    />) :
-                <Loading />}
+        <>
+            {starshipList &&
+                <ButtonContainer>
+                    <Button onClick={sortAZ}>Ordenar A-Z</Button>
+                    <Button onClick={sortZA}>Ordenar Z-A</Button>
+                </ButtonContainer>
+            }
+            <Container>
+                {starshipList ?
+                    starshipList.map(ship =>
+                        <Card
+                            key={ship.id}
+                            field1="Nome:"
+                            info1={ship.name}
+                            field2="Passageiros:"
+                            info2={ship.passengers}
+                            field3="Velocidade:"
+                            info3={`${ship.speed} MGLT`}
+                            photo={ship.id}
+                            cardType="starship"
+                            clickable
+                            redirectTo={`/starships/${ship.name}`}
+                        />) :
+                    <Loading />}
 
-        </Container>
+            </Container>
+        </>
     )
 }
