@@ -14,6 +14,7 @@ import { VehicleSingle } from './pages/VehicleSingle'
 import { Films } from './pages/Films'
 import { FilmSingle } from './pages/FilmSingle'
 import { Species } from './pages/Species'
+import { SpecieSingle } from './pages/SpecieSingle'
 import { NotFound } from './pages/404'
 
 import { Header } from './components/Header'
@@ -37,6 +38,7 @@ function App() {
           <Route exact path="/films" component={Films} />
           <Route path="/films/:name" component={FilmSingle} />
           <Route exact path="/species" component={Species} />
+          <Route path="/species/:name" component={SpecieSingle} />
           <Route exact path="/404" component={NotFound} />
         </Switch>
       </BrowserRouter>
