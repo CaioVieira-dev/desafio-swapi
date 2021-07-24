@@ -18,6 +18,7 @@ import { SpecieSingle } from './pages/Species/SpecieSingle'
 import { NotFound } from './pages/404'
 
 import { Header } from './components/Header'
+import { Footer } from './components/Footer'
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route path="/species/:name" component={SpecieSingle} />
           <Route exact path="/404" component={NotFound} />
         </Switch>
+        <Footer />
       </BrowserRouter>
     </div>
   );
